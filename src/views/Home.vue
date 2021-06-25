@@ -1,18 +1,25 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>My contater: {{ contater }}</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+
+  },
+  /*
+  access to store feature with $store.state.feature
+  ... corresponds a spread operator
+  Finally, access to output object gives state
+  */
+  computed: {
+    ...mapState(['contater'])
+  },
 }
 </script>
