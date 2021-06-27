@@ -1,12 +1,18 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <h1>My contater: {{ contater }}</h1>
+    <!-- It's not advisable to access a mutation in this way, but with an action. -->
+    <h1
+      :style="counterColor"
+    >
+      My counter: {{ counter }}
+    </h1>
+    <button @click="increase">Increase</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Home',
@@ -19,7 +25,13 @@ export default {
   Finally, access to output object gives state
   */
   computed: {
-    ...mapState(['contater'])
+    ...mapState(['counter']),
+    counterColor() {
+      return [this.counter > 100 ? {'color':'green'} : {'color':'red'}]
+    }
+  },
+  methods: {
+    ...mapMutations(['increase'])
   },
 }
 </script>
